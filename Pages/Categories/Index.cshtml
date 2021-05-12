@@ -1,0 +1,43 @@
+@page
+@model PosManager.Pages_Categories.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-page="Create">Create New</a>
+</p>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Category[0].Name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Category[0].Description)
+            </th>
+            <th scope="col"> Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Category)
+        {
+            <tr>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td colspan="3">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    <a class="btn btn-secondary" asp-page="./Edit" asp-route-id="@item.ID">Edit</a> 
+                    <a class="btn btn-info" asp-page="./Details" asp-route-id="@item.ID">Details</a> 
+                    <a class="btn btn-danger" asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
